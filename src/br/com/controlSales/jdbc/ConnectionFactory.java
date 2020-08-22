@@ -8,8 +8,8 @@ public class ConnectionFactory {
 	public Connection getConnection() {
 		
 		try {
-			
-			return DriverManager.getConnection("jdbc:mysql://127.0.0.1/bdvendas", "rootlocal", "rootlocal");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/bdvendas?useTimezone=true&serverTimezone=UTC", "root", "root"); 
 			
 		}catch(Exception e) {
 			throw new RuntimeException(e);

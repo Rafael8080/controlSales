@@ -9,7 +9,7 @@
 <body>
 
 	<h1>Cadastro de clientes</h1>
-	<form>
+	<form action="salvarCliente" method="POST">
 		<table>
 			<tr>
 				<td>Código:</td>
@@ -65,7 +65,13 @@
 				
 				<td>CPF:</td>
 				<td><input type="text" name="cpf" id="cpf"></td>
+				
+				<td>
+					<input type="submit" value="salvar">
+				</td>
 			</tr>
+			
+			
 		</table>
 	</form>
 </body>
