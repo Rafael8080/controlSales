@@ -54,7 +54,10 @@
 				<td>UF:</td>
 				<td>
 					<select id="uf" name="uf">
-						<option value="1">Item 1</option>
+						<option value="SP">SP</option>
+						<option value="RJ">RJ</option>
+						<option value="BA">BA</option>
+						<option value="PI">PI</option>
 					</select>
 				</td>
 			</tr>

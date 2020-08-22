@@ -2,6 +2,7 @@ package br.com.controlSales.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,6 +61,10 @@ public class servletCliente extends HttpServlet {
 		clienteObj.setUf(uf);
 		
 		clienteDao.cadastrarCliente(clienteObj);
+		
+		RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
+		request.setAttribute("clientes", clienteDao.listarClientes());
+		view.forward(request, response);
 		
 	}
 
