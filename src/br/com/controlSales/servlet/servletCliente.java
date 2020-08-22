@@ -43,7 +43,7 @@ public class servletCliente extends HttpServlet {
 		String complemento = request.getParameter("complemento");
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
-		String uf = request.getParameter("estado");
+		String uf = request.getParameter("uf");
 		
 		clienteObj.setNome(nome);
 		clienteObj.setRg(rg);
