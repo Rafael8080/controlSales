@@ -27,6 +27,21 @@ public class servletCliente extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String acao = request.getParameter("acao");
+		String idCliente = request.getParameter("idCliente");
+		
+		if(acao != null && idCliente != null && acao.equalsIgnoreCase("editarCliente")) {
+			
+		} else if(acao != null  && idCliente != null && acao.equalsIgnoreCase("excluirCliente")) {
+			
+		} else if(acao != null && idCliente != null && acao.equalsIgnoreCase("listarClientes")) {
+			
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("/dadosCliente.jsp");
+			request.setAttribute("clientes", clienteDao.listarClientes());
+			view.forward(request, response);
+		}
+		
 	}
 
 

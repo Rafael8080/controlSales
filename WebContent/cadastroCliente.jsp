@@ -9,7 +9,8 @@
 <body>
 
 	<h1>Cadastro de clientes</h1>
-	<form action="salvarCliente" method="POST">
+	<a href="dadosClientes.jsp?acao=listarClientes">Dados Pessoais</a>
+	<form action="salvarCliente" method="POST" style="margin-top:25px;">
 		<table>
 			<tr>
 				<td>Código:</td>

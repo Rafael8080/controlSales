@@ -48,11 +48,56 @@ public class ClienteDAO {
 		}
 	}
 
-	public void alterarCliente() {
+	public void alterarCliente(Cliente obj) {
+		
+		try {
+
+			String sql = "update tb_clientes set nome=?, rg=?, cpf=?, email=?, telefone=?, "
+					+ "celular=?, cep=?, endereco=?, numero=?, complemento=?, bairro=?, cidade=?, estado=? where id = ?";
+
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, obj.getNome());
+			stmt.setString(2, obj.getRg());
+			stmt.setString(3, obj.getCpf());
+			stmt.setString(4, obj.getEmail());
+			stmt.setString(5, obj.getTelefone());
+			stmt.setString(6, obj.getCelular());
+			stmt.setString(7, obj.getCep());
+			stmt.setString(8, obj.getEndereco());
+			stmt.setInt(9, obj.getNumero());
+			stmt.setString(10, obj.getComplemento());
+			stmt.setString(11, obj.getBairro());
+			stmt.setString(12, obj.getCidade());
+			stmt.setString(13, obj.getUf());
+			stmt.setInt(14, obj.getId());
+			stmt.execute();
+			stmt.close();
+
+			System.out.println("Alterado com sucesso");
+
+		} catch (SQLException e) {
+			System.out.println("Erro meu patrão");
+		}
 
 	}
 
-	public void excluirCliente() {
+	public void excluirCliente(Cliente obj) {
+		
+		try {
+			
+			String sql = "delete from tb_clientes where id = ? ";
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			
+			stmt.setInt(1, obj.getId());
+			
+			stmt.execute();
+			stmt.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 
 	}
 

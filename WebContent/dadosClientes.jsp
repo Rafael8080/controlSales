@@ -15,8 +15,8 @@ th {
 </head>
 <body>
 	<h1>Dados Pessoais</h1>
-
-	<form style="margin-bottom: 50px;">
+	<a href="cadastroCliente.jsp">Cadastro Clientes</a>
+	<form style="margin-bottom: 50px; margin-top: 25px;">
 
 		<label for="pesquisar">Nome</label> <input type="text" id="pesquisar">
 		<input type="submit">
@@ -38,11 +38,16 @@ th {
 			<th>UF</th>
 			<th>CPF</th>
 			<th>RG</th>
+			<th>Editar</th>
+			<th>Excluir</th>
+			<th>Novo</th>
+
 		</tr>
+
 		<c:forEach items="${clientes }" var="cliente">
 			<tr>
 				<td><c:out value="${cliente.id }"></c:out></td>
-				
+
 				<td><c:out value="${cliente.nome }"></c:out></td>
 				<td><c:out value="${cliente.email }"></c:out></td>
 				<td><c:out value="${cliente.celular }"></c:out></td>
@@ -56,14 +61,14 @@ th {
 				<td><c:out value="${cliente.uf }"></c:out></td>
 				<td><c:out value="${cliente.cpf }"></c:out></td>
 				<td><c:out value="${cliente.rg }"></c:out></td>
+				<td><a
+					href="salvarCliente?acao=editarCliente&idCliente=${cliente.id }">Editar</a></td>
+				<td><a
+					href="salvarCliente?acao=excluirCliente&idCliente=${cliente.id }">Excluir</a></td>
+				<td><a href="cadastroCliente.jsp">Novo</a></td>
 			</tr>
 		</c:forEach>
 	</table>
-
-	<a href="#">Novo</a>
-	<a href="#">Salvar</a>
-	<a href="#">Editar</a>
-	<a href="#">Excluir</a>
 
 </body>
 </html>
