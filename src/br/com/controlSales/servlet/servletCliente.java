@@ -14,39 +14,53 @@ import br.com.controlSales.model.Cliente;
 
 @WebServlet("/salvarCliente")
 public class servletCliente extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private Cliente clienteObj = new Cliente();
 	private ClienteDAO clienteDao = new ClienteDAO();
-       
-    public servletCliente() {
-        super();
-      
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public servletCliente() {
+		super();
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
 		String idCliente = request.getParameter("idCliente");
-		
-		if(acao != null && idCliente != null && acao.equalsIgnoreCase("editarCliente")) {
+
+		if (acao.equalsIgnoreCase("editarCliente") && acao != null && idCliente != null) {
 			
-		} else if(acao != null  && idCliente != null && acao.equalsIgnoreCase("excluirCliente")) {
+			RequestDispatcher view = request.getRequestDispatcher("/editarCliente.jsp");
+			Cliente consultarCLienteId = clienteDao.consultarClienteId(idCliente);
+			request.setAttribute("cliente", consultarCLienteId);
+			view.forward(request, response);
 			
-		} else if(acao != null && idCliente != null && acao.equalsIgnoreCase("listarClientes")) {
+
+		} else if (acao.equalsIgnoreCase("excluirCliente") && acao != null && idCliente != null) {
 			
-		} else {
-			RequestDispatcher view = request.getRequestDispatcher("/dadosCliente.jsp");
+			
+
+		} else if (acao.equalsIgnoreCase("listarClientes") && acao != null) {
+			
+			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
 			request.setAttribute("clientes", clienteDao.listarClientes());
 			view.forward(request, response);
+			
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
+			request.setAttribute("clientes", clienteDao.listarClientes());
+			view.forward(request, response);
+			System.out.println("Cai aqui");
 		}
-		
+
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		String nome = request.getParameter("nome");
 		String rg = request.getParameter("rg");
 		String cpf = request.getParameter("cpf");
@@ -60,7 +74,7 @@ public class servletCliente extends HttpServlet {
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
 		String uf = request.getParameter("uf");
-		
+
 		clienteObj.setNome(nome);
 		clienteObj.setRg(rg);
 		clienteObj.setCpf(cpf);
@@ -74,13 +88,34 @@ public class servletCliente extends HttpServlet {
 		clienteObj.setBairro(bairro);
 		clienteObj.setCidade(cidade);
 		clienteObj.setUf(uf);
+
+		String acao = request.getParameter("acao");
+		String idCliente = request.getParameter("idCliente");
 		
-		clienteDao.cadastrarCliente(clienteObj);
+		if(acao != null && acao.equalsIgnoreCase("salvarClient")) {
+			
+			clienteDao.cadastrarCliente(clienteObj);
+			
+			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
+			request.setAttribute("clientes", clienteDao.listarClientes());
+			view.forward(request, response);
+			
+			
+		} else if(idCliente != null && acao != null && acao.equalsIgnoreCase("editarClient")) {
+			
+			clienteDao.alterarCliente(idCliente, clienteObj);
+			
+			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
+			request.setAttribute("clientes", clienteDao.listarClientes());
+			view.forward(request, response);
+			
+		} else {			
+			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
+			request.setAttribute("clientes", clienteDao.listarClientes());
+			view.forward(request, response);
+		}
 		
-		RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
-		request.setAttribute("clientes", clienteDao.listarClientes());
-		view.forward(request, response);
-		
+
 	}
 
 }

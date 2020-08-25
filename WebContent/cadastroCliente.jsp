@@ -9,12 +9,12 @@
 <body>
 
 	<h1>Cadastro de clientes</h1>
-	<a href="dadosClientes.jsp?acao=listarClientes">Dados Pessoais</a>
-	<form action="salvarCliente" method="POST" style="margin-top:25px;">
+	<a href="salvarCliente?acao=listarClientes">Dados Pessoais</a>
+	<form action="salvarCliente?acao=salvarClient" method="POST" style="margin-top:25px;">
 		<table>
 			<tr>
 				<td>Código:</td>
-				<td><input type="text" name="id" id="id"></td>
+				<td><input readonly type="text" name="id" id="id"></td>
 
 				<td>Nome:</td>
 				<td><input type="text" name="nome" id="nome"></td>

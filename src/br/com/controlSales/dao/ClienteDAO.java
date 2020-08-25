@@ -48,12 +48,13 @@ public class ClienteDAO {
 		}
 	}
 
-	public void alterarCliente(Cliente obj) {
+	public void alterarCliente(String id, Cliente obj) {
+		
 		
 		try {
 
 			String sql = "update tb_clientes set nome=?, rg=?, cpf=?, email=?, telefone=?, "
-					+ "celular=?, cep=?, endereco=?, numero=?, complemento=?, bairro=?, cidade=?, estado=? where id = ?";
+					+ "celular=?, cep=?, endereco=?, numero=?, complemento=?, bairro=?, cidade=?, estado=? where id = '"+id+"'";
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, obj.getNome());
@@ -69,16 +70,54 @@ public class ClienteDAO {
 			stmt.setString(11, obj.getBairro());
 			stmt.setString(12, obj.getCidade());
 			stmt.setString(13, obj.getUf());
-			stmt.setInt(14, obj.getId());
-			stmt.execute();
+			stmt.executeUpdate();
 			stmt.close();
 
 			System.out.println("Alterado com sucesso");
 
 		} catch (SQLException e) {
-			System.out.println("Erro meu patrão");
+			e.printStackTrace();
+			System.out.println("Erro sql");
 		}
 
+	}
+	
+	public Cliente consultarClienteId(String id) {
+		
+		Cliente obj = new Cliente();
+		
+		try {
+			
+			String sql = "select * from tb_clientes where id = '"+id+"' ";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				obj.setId(rs.getInt("id"));
+				obj.setNome(rs.getString("nome"));
+				obj.setRg(rs.getString("rg"));
+				obj.setCpf(rs.getString("cpf"));
+				obj.setEmail(rs.getString("email"));
+				obj.setTelefone(rs.getString("telefone"));
+				obj.setCelular(rs.getString("celular"));
+				obj.setCep(rs.getString("cep"));
+				obj.setEndereco(rs.getString("endereco"));
+				obj.setNumero(rs.getInt("numero"));
+				obj.setComplemento(rs.getString("complemento"));
+				obj.setBairro(rs.getString("bairro"));
+				obj.setCidade(rs.getString("cidade"));
+				obj.setUf(rs.getString("estado"));	
+				
+			}
+			return obj;
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return null;
+			
+		}
+		
 	}
 
 	public void excluirCliente(Cliente obj) {
