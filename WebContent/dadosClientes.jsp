@@ -46,6 +46,8 @@ td{
 			<th>Novo</th>
 
 		</tr>
+		
+		
 
 		<c:forEach items="${clientes }" var="cliente">
 			<tr>
@@ -57,8 +59,8 @@ td{
 				<td><c:out value="${cliente.telefone }"></c:out></td>
 				<td><c:out value="${cliente.cep }"></c:out></td>
 				<td><c:out value="${cliente.endereco }"></c:out></td>
-				<td><c:out value="${cliente.numero }"></c:out></td>
-				<td><c:out value="${cliente.bairro }"></c:out></td>
+				<td><c:out value="${cliente.numero }"></c:out></td>				
+   			   <td><c:out value="${cliente.bairro }"></c:out></td>
 				<td><c:out value="${cliente.cidade }"></c:out></td>
 				<td><c:out value="${cliente.complemento }"></c:out></td>
 				<td><c:out value="${cliente.uf }"></c:out></td>
@@ -68,7 +70,6 @@ td{
 					href="salvarCliente?acao=editarCliente&idCliente=${cliente.id }">Editar</a></td>
 				<td><a
 					href="salvarCliente?acao=excluirCliente&idCliente=${cliente.id }">Excluir</a></td>
-				<td><a href="cadastroCliente.jsp">Novo</a></td>
 			</tr>
 		</c:forEach>
 	</table>
