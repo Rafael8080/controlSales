@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@page import="br.com.controlSales.model.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Editar Cliente</title>
 </head>
 <body>
 
@@ -54,11 +55,69 @@
 				
 				<td>UF:</td>
 				<td>
-					<select id="uf" name="uf" value="${cliente.uf }">
-						<option value="SP">SP</option>
-						<option value="RJ">RJ</option>
-						<option value="BA">BA</option>
-						<option value="PI">PI</option>
+					<select id="uf" name="uf" >
+						<option value="SP" 
+						<%
+						
+						if(request.getAttribute("cliente") != null){
+							Cliente cli = (Cliente) request.getAttribute("cliente");
+							if(cli.getUf().equalsIgnoreCase("SP")){
+								out.print(" ");
+								out.print("selected=\"select\"");
+								out.print(" ");
+							}
+						}
+						
+						%>
+						>SP</option>
+						<option value="RJ"
+						
+						<%
+						
+						if(request.getAttribute("cliente") != null){
+							Cliente cli = (Cliente) request.getAttribute("cliente");
+							if(cli.getUf().equalsIgnoreCase("RJ")){
+								out.print(" ");
+								out.print("selected=\"select\"");
+								out.print(" ");
+							}
+						}
+						
+						%>
+						
+						>RJ</option>
+						<option value="BA"
+						
+						<%
+						
+						if(request.getAttribute("cliente") != null){
+							Cliente cli = (Cliente) request.getAttribute("cliente");
+							if(cli.getUf().equalsIgnoreCase("BA")){
+								out.print(" ");
+								out.print("selected=\"select\"");
+								out.print(" ");
+							}
+						}
+						
+						%>
+						
+						>BA</option>
+						<option value="PI"
+						
+						<%
+						
+						if(request.getAttribute("cliente") != null){
+							Cliente cli = (Cliente) request.getAttribute("cliente");
+							if(cli.getUf().equalsIgnoreCase("PI")){
+								out.print(" ");
+								out.print("selected=\"select\"");
+								out.print(" ");
+							}
+						}
+						
+						%>
+						
+						>PI</option>
 					</select>
 				</td>
 			</tr>

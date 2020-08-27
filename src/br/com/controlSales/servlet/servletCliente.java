@@ -13,14 +13,14 @@ import br.com.controlSales.dao.ClienteDAO;
 import br.com.controlSales.model.Cliente;
 
 @WebServlet("/salvarCliente")
-public class servletCliente extends HttpServlet {
+public class ServletCliente extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	private Cliente clienteObj = new Cliente();
 	private ClienteDAO clienteDao = new ClienteDAO();
 
-	public servletCliente() {
+	public ServletCliente() {
 		super();
 
 	}
@@ -31,24 +31,25 @@ public class servletCliente extends HttpServlet {
 		String acao = request.getParameter("acao");
 		String idCliente = request.getParameter("idCliente");
 
-		if (acao.equalsIgnoreCase("editarCliente") && acao != null && idCliente != null) {
-			
+		if (acao != null && idCliente != null && acao.equalsIgnoreCase("editarCliente")) {
+
 			RequestDispatcher view = request.getRequestDispatcher("/editarCliente.jsp");
-			Cliente consultarCLienteId = clienteDao.consultarClienteId(idCliente);
-			request.setAttribute("cliente", consultarCLienteId);
+			Cliente consultarClienteId = clienteDao.consultarClienteId(idCliente);
+			request.setAttribute("cliente", consultarClienteId);
 			view.forward(request, response);
-			
 
-		} else if (acao.equalsIgnoreCase("excluirCliente") && acao != null && idCliente != null) {
-			
-			
-
-		} else if (acao.equalsIgnoreCase("listarClientes") && acao != null) {
-			
+		} else if (acao != null && idCliente != null && acao.equalsIgnoreCase("excluirCliente")) {
+			clienteDao.excluirCliente(idCliente);
 			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
 			request.setAttribute("clientes", clienteDao.listarClientes());
 			view.forward(request, response);
-			
+
+		} else if (acao != null && acao.equalsIgnoreCase("listarClientes")) {
+
+			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
+			request.setAttribute("clientes", clienteDao.listarClientes());
+			view.forward(request, response);
+
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
 			request.setAttribute("clientes", clienteDao.listarClientes());
@@ -91,30 +92,29 @@ public class servletCliente extends HttpServlet {
 
 		String acao = request.getParameter("acao");
 		String idCliente = request.getParameter("idCliente");
-		
-		if(acao != null && acao.equalsIgnoreCase("salvarClient")) {
-			
+
+		if (acao != null && acao.equalsIgnoreCase("salvarClient")) {
+
 			clienteDao.cadastrarCliente(clienteObj);
-			
+
 			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
 			request.setAttribute("clientes", clienteDao.listarClientes());
 			view.forward(request, response);
-			
-			
-		} else if(idCliente != null && acao != null && acao.equalsIgnoreCase("editarClient")) {
-			
+
+		} else if (acao != null && idCliente != null && acao.equalsIgnoreCase("editarClient")) {
+
 			clienteDao.alterarCliente(idCliente, clienteObj);
-			
+
 			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
 			request.setAttribute("clientes", clienteDao.listarClientes());
 			view.forward(request, response);
-			
-		} else {			
+
+		} 
+		else {
 			RequestDispatcher view = request.getRequestDispatcher("/dadosClientes.jsp");
 			request.setAttribute("clientes", clienteDao.listarClientes());
 			view.forward(request, response);
 		}
-		
 
 	}
 

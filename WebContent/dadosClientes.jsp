@@ -11,19 +11,22 @@
 th {
 	padding: 10px;
 }
+
+td{
+	padding:5px;
+}
 </style>
 </head>
 <body>
 	<h1>Dados Pessoais</h1>
 	<a href="cadastroCliente.jsp">Cadastro Clientes</a>
-	<form style="margin-bottom: 50px; margin-top: 25px;">
-
-		<label for="pesquisar">Nome</label> <input type="text" id="pesquisar">
-		<input type="submit">
+	<form action="consultarNome" method="post" style="margin-bottom: 50px; margin-top: 25px;">
+		<input type="text" id="nomeConsulta" name="nomeConsulta">
+		<input type="submit" value="Enviar">
 	</form>
 
-	<table>
-		<tr>
+	<table style="text-aline:center;" style="width:100%;" border="1">
+		<tr >
 			<th>Código</th>
 			<th>Nome</th>
 			<th>Email</th>

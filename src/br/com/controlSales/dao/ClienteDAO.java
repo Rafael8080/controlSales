@@ -49,12 +49,12 @@ public class ClienteDAO {
 	}
 
 	public void alterarCliente(String id, Cliente obj) {
-		
-		
+
 		try {
 
 			String sql = "update tb_clientes set nome=?, rg=?, cpf=?, email=?, telefone=?, "
-					+ "celular=?, cep=?, endereco=?, numero=?, complemento=?, bairro=?, cidade=?, estado=? where id = '"+id+"'";
+					+ "celular=?, cep=?, endereco=?, numero=?, complemento=?, bairro=?, cidade=?, estado=? where id = '"
+					+ id + "'";
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, obj.getNome());
@@ -81,78 +81,18 @@ public class ClienteDAO {
 		}
 
 	}
-	
+
 	public Cliente consultarClienteId(String id) {
-		
+
 		Cliente obj = new Cliente();
-		
-		try {
-			
-			String sql = "select * from tb_clientes where id = '"+id+"' ";
-			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next()) {
-				
-				obj.setId(rs.getInt("id"));
-				obj.setNome(rs.getString("nome"));
-				obj.setRg(rs.getString("rg"));
-				obj.setCpf(rs.getString("cpf"));
-				obj.setEmail(rs.getString("email"));
-				obj.setTelefone(rs.getString("telefone"));
-				obj.setCelular(rs.getString("celular"));
-				obj.setCep(rs.getString("cep"));
-				obj.setEndereco(rs.getString("endereco"));
-				obj.setNumero(rs.getInt("numero"));
-				obj.setComplemento(rs.getString("complemento"));
-				obj.setBairro(rs.getString("bairro"));
-				obj.setCidade(rs.getString("cidade"));
-				obj.setUf(rs.getString("estado"));	
-				
-			}
-			return obj;
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-			return null;
-			
-		}
-		
-	}
-
-	public void excluirCliente(Cliente obj) {
-		
-		try {
-			
-			String sql = "delete from tb_clientes where id = ? ";
-			
-			PreparedStatement stmt = con.prepareStatement(sql);
-			
-			stmt.setInt(1, obj.getId());
-			
-			stmt.execute();
-			stmt.close();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-
-	}
-
-	public List<Cliente> listarClientes() {
 
 		try {
 
-			List<Cliente> lista = new ArrayList<>();
-
-			String sql = "select * from tb_clientes";
+			String sql = "select * from tb_clientes where id = '" + id + "' ";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-
-				Cliente obj = new Cliente();
 
 				obj.setId(rs.getInt("id"));
 				obj.setNome(rs.getString("nome"));
@@ -169,19 +109,83 @@ public class ClienteDAO {
 				obj.setCidade(rs.getString("cidade"));
 				obj.setUf(rs.getString("estado"));
 
-				lista.add(obj);
-
 			}
-
-			return lista;
-
-		} catch (Exception e) {
+			return obj;
+		} catch (SQLException e) {
 
 			e.printStackTrace();
-
 			return null;
+
 		}
 
 	}
+
+	public void excluirCliente(String id) {
+
+		try {
+
+			String sql = "delete from tb_clientes where id = '" + id + "'";
+
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.execute();
+			stmt.close();
+			System.out.println("Excluido com sucesso");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public List<Cliente> listarClientes() {
+		String sql = "select * from tb_clientes";
+		return consultarUsuarios(sql);
+	}
+	
+	public List<Cliente> buscarClienteNome(String nome) {
+		String sql = "select * from tb_clientes where nome like '"+nome+"'";	
+		return consultarUsuarios(sql);
+
+	}
+
+	private List<Cliente> consultarUsuarios(String sql) {
+		try {
+		List<Cliente> lista = new ArrayList<>();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+
+		while (rs.next()) {
+
+			Cliente obj = new Cliente();
+
+			obj.setId(rs.getInt("id"));
+			obj.setNome(rs.getString("nome"));
+			obj.setRg(rs.getString("rg"));
+			obj.setCpf(rs.getString("cpf"));
+			obj.setEmail(rs.getString("email"));
+			obj.setTelefone(rs.getString("telefone"));
+			obj.setCelular(rs.getString("celular"));
+			obj.setCep(rs.getString("cep"));
+			obj.setEndereco(rs.getString("endereco"));
+			obj.setNumero(rs.getInt("numero"));
+			obj.setComplemento(rs.getString("complemento"));
+			obj.setBairro(rs.getString("bairro"));
+			obj.setCidade(rs.getString("cidade"));
+			obj.setUf(rs.getString("estado"));
+
+			lista.add(obj);
+
+		}
+
+		return lista;
+
+	}catch(Exception e){
+
+		e.printStackTrace();
+
+		return null;
+	}
+}
+
 
 }
