@@ -44,7 +44,7 @@ public class ClienteDAO {
 			System.out.println("Cadastrado com sucesso");
 
 		} catch (SQLException e) {
-			System.out.println("Erro meu patrão");
+			System.out.println("Erro");
 		}
 	}
 
