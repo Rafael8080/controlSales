@@ -9,19 +9,22 @@
 <body>
 	<h1>Autenticação de usuarios</h1>
 
-	<form method="post">
-				<label for="email">Email</label>
-				<input type="text" name="email" id="email">
-	
-				<br><br>
-				
-				<label for="senha">Senha</label>
-				<input type="password" name="senha" id="senha">
-				
-				<br><br>
-				
-				<input type="submit" value="Enviar">
+	<form action="ServletAutenticar" method="post">
+		<table>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" name="email" id="email"></td>
+				<td><input type="hidden" readonly name="url"
+					value="<%= request.getParameter("url")%>"></td>
 			</tr>
+
+			<tr>
+				<td>Senha:</td>
+				<td><input type="password" name="senha" id="senha"></td>
+			</tr>
+			<tr>
+			
+			<td><input type="submit" value="Enviar"></td></tr>
 		</table>
 	</form>
 

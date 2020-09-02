@@ -1,50 +1,59 @@
 package br.com.controlSales.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-/**
- * Servlet Filter implementation class FilterAutenticar
- */
-@WebFilter("/FilterAutenticar")
+import br.com.controlSales.model.Login;
+
+
+
+@WebFilter("/pages/*")
 public class FilterAutenticar implements Filter {
 
-    /**
-     * Default constructor. 
-     */
     public FilterAutenticar() {
-        // TODO Auto-generated constructor stub
+        
     }
 
-	/**
-	 * @see Filter#destroy()
-	 */
+	
 	public void destroy() {
-		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
 
-		// pass the request along the filter chain
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
+		
+		String autenticacaoUrl = req.getServletPath();
+		
+		Login userSession = (Login) session.getAttribute("funcionario");
+		
+		if(userSession == null && !autenticacaoUrl.equalsIgnoreCase("/pages/ServletAutenticar")) {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/autenticar.jsp?url="+autenticacaoUrl);
+			dispatcher.forward(request, response);
+			
+			return;
+			
+		}
+		
 		chain.doFilter(request, response);
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
+
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -14,7 +14,7 @@
 </head>
 <body>
 <a href="/controlSales/index.jsp">Inicio</a>
-	<h1>Cadastro de clientes</h1>
+	<h1>Cadastro de Funcionarios</h1>
 	<a href="salvarFuncionario?acao=listarFuncionarios">Dados Pessoais</a>
 	<form action="salvarFuncionario?acao=salvarFuncionario" method="POST"
 		style="margin-top: 25px;">
