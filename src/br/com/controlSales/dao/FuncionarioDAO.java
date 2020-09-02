@@ -52,10 +52,41 @@ public class FuncionarioDAO {
 			System.out.println("Erro no sql");
 		}
 	}
+	
+	public boolean login (String email, String senha) {
+		try {
+			
+			String sql = "select * from tb_funcionarios where email = '" +email+ "'and senha = '"+senha+"'";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+		if(rs.next()) {
+			return true;
+			
+		}else {
+			return false;
+		}
+			
+		}catch(Exception e) {
+			
+			System.out.println("Erro no sql");
+			
+			e.printStackTrace();
+			return false;
+			
+		}
+	}
 
 	public List<Funcionario> listarFuncionarios() {
 		String sql = "select * from tb_funcionarios";
 		return consultarFuncionarios(sql);
+	}
+	
+	public List<Funcionario> buscaFuncionarioNome(String nome) {
+		String sql = "select * from tb_funcionarios where nome like '"+nome+"'";	
+		return consultarFuncionarios(sql);
+
 	}
 
 	private List<Funcionario> consultarFuncionarios(String sql) {

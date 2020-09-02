@@ -11,6 +11,12 @@
 
 	<h1>Editar Cliente</h1>
 	<a href="salvarCliente?acao=listarClientes">Dados Pessoais</a>
+	
+	<form action="consultarNome?acao=pesquisarFuncionario" method="post" style="margin-bottom: 50px; margin-top: 25px;">
+		<input type="text" id="nomeConsulta" name="nomeConsulta">
+		<input type="submit" value="Enviar">
+	</form>
+	
 	<form action="salvarCliente?acao=editarClient&idCliente=${cliente.id }" method="POST" style="margin-top:25px;">
 		<table>
 			<tr>

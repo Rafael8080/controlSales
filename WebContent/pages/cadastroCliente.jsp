@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Cadastro de Funcionários</title>
+<title>Cadastro de Clientes</title>
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -13,10 +13,10 @@
 
 </head>
 <body>
-
+	<a href="/controlSales/index.jsp">Inicio</a>
 	<h1>Cadastro de clientes</h1>
-	<a href="salvarFuncionario?acao=listarFuncionarios">Dados Pessoais</a>
-	<form action="salvarFuncionario?acao=salvarFuncionario" method="POST"
+	<a href="salvarCliente?acao=listarClientes">Dados Clientes</a>
+	<form action="salvarCliente?acao=salvarClient" method="POST"
 		style="margin-top: 25px;">
 		<table>
 			<tr>
@@ -69,31 +69,13 @@
 				</select></td>
 			</tr>
 
-			<tr>			
+			<tr>
 				<td>RG:</td>
 				<td><input type="text" name="rg" id="rg"></td>
 
 				<td>CPF:</td>
 				<td><input type="text" name="cpf" id="cpf"></td>
-				
-				<td>Nivel de Acesso</td>
-				<td>
-					<select name="nivelAcesso" id="nivelAcesso">
-						<option value="usuario">Usuario</option>
-						<option value="administrador">Administrador</option>
-					</select>
-				</td>
 
-			</tr>
-			
-			<tr>
-				<td>Senha:</td>
-				<td><input type="password" name="senha" id="senha"></td>
-			
-				<td>Cargo</td>
-				<td><input type="text" name="cargo" id="cargo"></td>
-				
-				
 				<td><input type="submit" value="salvar"></td>
 			</tr>
 

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.controlSales.dao.FuncionarioDAO;
 import br.com.controlSales.model.Funcionario;
 
-@WebServlet("/salvarFuncionario")
+@WebServlet("/pages/salvarFuncionario")
 public class ServletFuncionario extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +33,7 @@ public class ServletFuncionario extends HttpServlet {
 
 		if (acao != null && idFuncionario != null && acao.equalsIgnoreCase("editarFuncionario")) {
 			
-				RequestDispatcher view = request.getRequestDispatcher("/editarFuncionario.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("/pages/editarFuncionario.jsp");
 				Funcionario funcionario = funcionarioDao.consultarFuncionarioId(idFuncionario);
 				request.setAttribute("funcionario", funcionario);
 				view.forward(request, response);		
@@ -41,14 +41,14 @@ public class ServletFuncionario extends HttpServlet {
 		} else if (acao != null && idFuncionario != null && acao.equalsIgnoreCase("excluirFuncionario")) {
 			
 			funcionarioDao.excluirCliente(idFuncionario);
-			RequestDispatcher view = request.getRequestDispatcher("/dadosFuncionarios.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/pages/dadosFuncionarios.jsp");
 			request.setAttribute("funcionarios", funcionarioDao.listarFuncionarios());
 			view.forward(request, response);
 			
 			
 		} else if (acao != null && acao.equalsIgnoreCase("listarFuncionarios")) {
 
-			RequestDispatcher view = request.getRequestDispatcher("dadosFuncionarios.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/pages/dadosFuncionarios.jsp");
 			request.setAttribute("funcionarios", funcionarioDao.listarFuncionarios());
 			view.forward(request, response);
 
@@ -102,7 +102,7 @@ public class ServletFuncionario extends HttpServlet {
 		if (acao != null && acao.equalsIgnoreCase("salvarFuncionario")) {
 
 			funcionarioDao.cadastrarFuncionario(funcionarioObj);
-			RequestDispatcher view = request.getRequestDispatcher("dadosFuncionarios.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/pages/dadosFuncionarios.jsp");
 			request.setAttribute("funcionarios", funcionarioDao.listarFuncionarios());
 			view.forward(request, response);
 			
@@ -111,7 +111,7 @@ public class ServletFuncionario extends HttpServlet {
 			System.out.println(nivelAcesso);
 			
 			funcionarioDao.alterarFuncionario(idFuncionario, funcionarioObj);
-			RequestDispatcher view = request.getRequestDispatcher("dadosFuncionarios.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/pages/dadosFuncionarios.jsp");
 			request.setAttribute("funcionarios", funcionarioDao.listarFuncionarios());
 			view.forward(request, response);
 		

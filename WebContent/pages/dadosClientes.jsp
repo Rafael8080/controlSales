@@ -18,9 +18,10 @@ td{
 </style>
 </head>
 <body>
+<a href="/controlSales/index.jsp">Inicio</a>
 	<h1>Dados Pessoais</h1>
 	<a href="cadastroCliente.jsp">Cadastro Clientes</a>
-	<form action="consultarNome" method="post" style="margin-bottom: 50px; margin-top: 25px;">
+	<form action="consultarNome?acao=pesquisarCliente" method="post" style="margin-bottom: 50px; margin-top: 25px;">
 		<input type="text" id="nomeConsulta" name="nomeConsulta">
 		<input type="submit" value="Enviar">
 	</form>
