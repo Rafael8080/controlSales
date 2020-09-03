@@ -29,6 +29,16 @@ public class ServletAutenticar extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String deslogar = request.getParameter("deslogar");
+		System.out.println("Caiu aqui");
+		if(Boolean.parseBoolean(deslogar)) {
+			System.out.println("é True sim");
+			HttpServletRequest req = (HttpServletRequest) request;
+			HttpSession session = req.getSession();
+			session.invalidate();
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 	}
 
@@ -39,7 +49,7 @@ public class ServletAutenticar extends HttpServlet {
 		String senha = request.getParameter("senha");
 		String url = request.getParameter("url");
 		
-		System.out.println("xghkgjhkj");
+		
 		
 		if(email != null && !email.isEmpty() && senha != null && !senha.isEmpty()) {
 			if(loginDao.login(email, senha)) {
@@ -51,7 +61,6 @@ public class ServletAutenticar extends HttpServlet {
 				HttpServletRequest req = (HttpServletRequest) request;
 				HttpSession session = req.getSession();
 				session.setAttribute("funcionario", userSession);
-				System.out.println(url);
 				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 			}else {

@@ -14,6 +14,9 @@
 	<tr>
 		<td><a href="pages/cadastroFuncionario.jsp">Funcionario</a></td>
 	</tr>
+	<tr>
+		<td><a href="pages/ServletAutenticar?deslogar=true">Sair</a></td>
+	</tr>
 	
 </table>
 </body>
