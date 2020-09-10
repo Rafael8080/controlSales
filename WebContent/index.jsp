@@ -18,7 +18,7 @@
 		<td><a href="pages/cadastroFornecedor.jsp">Fornecedores</a></td>
 	</tr>
 	<tr>
-		<td><a href="pages/produtos.jsp">Produtos</a></td>
+		<td><a href="pages/cadastroProduto.jsp">Produtos</a></td>
 	</tr>
 	<tr>
 		<td><a href="pages/vendas.jsp">Vendas</a></td>

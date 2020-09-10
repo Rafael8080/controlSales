@@ -15,6 +15,7 @@ public class Fornecedor {
 	private String bairro;
 	private String cidade;
 	private String uf;
+	
 	public int getId() {
 		return id;
 	}
@@ -92,6 +93,12 @@ public class Fornecedor {
 	}
 	public void setUf(String uf) {
 		this.uf = uf;
+	}
+	@Override
+	public String toString() {
+		return "Fornecedor [id=" + id + ", nome=" + nome + ", cnpj=" + cnpj + ", email=" + email + ", telefone="
+				+ telefone + ", celular=" + celular + ", cep=" + cep + ", endereco=" + endereco + ", numero=" + numero
+				+ ", complemento=" + complemento + ", bairro=" + bairro + ", cidade=" + cidade + ", uf=" + uf + "]";
 	}
 	
 	
